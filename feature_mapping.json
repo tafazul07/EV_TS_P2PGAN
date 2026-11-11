@@ -1,0 +1,27 @@
+{
+  "paper": {
+    "title": "Generative Adversarial Network for Synthesizing Multivariate Time-Series Data in Electric Vehicle Driving Scenarios",
+    "citation": "Jeng, S.-L. Sensors 2025, 25, 749.",
+    "feature_evidence": "Figure 1(a), p. 6. The paper figure names the 10 input signals. For heating power it specifically labels Requested Heating Power [W]. The figure labels elevation change; the supplied dataset header is Elevation [m], interpreted here as the source elevation channel.",
+    "mapping_status": "Mapped to observed columns. Full-data usability is blocked because two required input columns are absent from 20 summer trips."
+  },
+  "inputs": [
+    {"feature":"Battery Current","csv_column":"Battery Current [A]","unit":"A","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None; preserve source sign convention."},
+    {"feature":"Battery Temperature","csv_column":"Battery Temperature [°C]","unit":"°C","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None; normalize using training split only."},
+    {"feature":"Vehicle Velocity","csv_column":"Velocity [km/h]","unit":"km/h","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"No numeric conversion. TripB38 has source header 'Velocity [km/h]]]' and is normalized to this canonical name; the extra bracket is documented as a header typo."},
+    {"feature":"Throttle Position","csv_column":"Throttle [%]","unit":"%","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."},
+    {"feature":"Elevation","csv_column":"Elevation [m]","unit":"m","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None. Paper Figure 1 says 'Elevation change'; this header is the closest direct source channel, so interpretation is recorded as an assumption."},
+    {"feature":"Heating Power","csv_column":"Requested Heating Power [W]","unit":"W","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"Selected because Figure 1(a) explicitly labels Requested Heating Power [W]. Other measured heating channels exist and are not substituted."},
+    {"feature":"Air-Conditioning Power","csv_column":"AirCon Power [kW]","unit":"kW","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."},
+    {"feature":"Heater Voltage","csv_column":"Heater Voltage [V]","unit":"V","season_a_available":false,"season_a_trips_with_column":12,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None. Column absent in 20 summer trip files; no imputation or synthetic replacement allowed."},
+    {"feature":"Heater Current","csv_column":"Heater Current [A]","unit":"A","season_a_available":false,"season_a_trips_with_column":12,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None. Column absent in 20 summer trip files; no imputation or synthetic replacement allowed."},
+    {"feature":"Ambient Temperature","csv_column":"Ambient Temperature [°C]","unit":"°C","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."}
+  ],
+  "outputs": [
+    {"feature":"State of Charge (SOC)","csv_column":"SoC [%]","unit":"%","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None. Observed 30,793 missing cells across 70 trips; gap policy must be set and reported."},
+    {"feature":"Battery Voltage","csv_column":"Battery Voltage [V]","unit":"V","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."},
+    {"feature":"Motor Torque","csv_column":"Motor Torque [Nm]","unit":"Nm","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."},
+    {"feature":"Longitudinal Acceleration","csv_column":"Longitudinal Acceleration [m/s^2]","unit":"m/s^2","season_a_available":true,"season_a_trips_with_column":32,"season_a_trip_count":32,"season_b_available":true,"season_b_trips_with_column":38,"season_b_trip_count":38,"conversion":"None."}
+  ]
+}
+
